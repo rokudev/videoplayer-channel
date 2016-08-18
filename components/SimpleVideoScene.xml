@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
+<component name="SimpleVideoScene" extends="Scene">
+  <children>
+
+    <Rectangle
+      color="#DFDFDF"
+      width="1920"
+      height="1080"
+      opacity=".6"
+      translation="[0,0]" />
+
+    <Overhang
+      showClock="true"
+      logoUri="pkg:/images/Overhang_Logo_HD.png"
+      backgroundUri="pkg:/images/Overhang_Background_SD.png"/>
+
+    <Video
+      id="Video"
+      width="1920"
+      height="1080"
+      translation="[0,0]"
+      visible="false"/>
+
+    <HomeScreen
+      id="HomeScreen"
+      visible="false"/>
+
+    <CategoryScreen
+      id="CategoryScreen"
+      visible="false"/>
+
+    <Dialog
+      id="Warning"
+      visible="false" />
+
+    <Exiter id="Exiter"/>
+  </children>
+
+  <interface>
+    <field id="homeRowItemSelected" type="intarray" alias="HomeScreen.rowItemSelected" onChange="onRowItemSelected"/>
+    <field id="category" type="string" />
+  </interface>
+
+  <script type="text/brightscript" uri="pkg:/components/SGHelperFunctions.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/SimpleVideoScene.brs"/>
+</component>

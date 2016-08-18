@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
+
+<component name="Item" extends="Group">
+
+  <children>
+      <Poster id="poster" />
+      <Label  id="label"    font="font:MediumBoldSystemFont" text="PLACEHOLDER" />
+      <Label  id="sublabel" font="font:SmallBoldSystemFont"  text="PLACEHOLDER" />
+  </children>
+
+  <interface>
+    <field id="width"       type="float" onChange="updateLayout"/>
+    <field id="height"      type="float" onChange="updateLayout"/>
+    <field id="itemContent" type="node" onChange="itemContentChanged" />
+  </interface>
+
+  <script type="text/brightscript">
+    <![CDATA[
+      sub Init()
+        m.Poster = m.top.findNode("poster")
+        m.Label = m.top.findNode("label")
+        m.SubLabel = m.top.findNode("sublabel")
+      end sub
+
+      sub itemContentChanged()
+        m.Poster.loadDisplayMode = "scaleToZoom"
+        m.Label.text = m.top.itemcontent.Title
+        m.SubLabel.text = m.top.itemcontent.shortdescriptionline2
+        updateLayout()
+        m.Poster.uri = m.top.itemContent.HDPOSTERURL
+        m.Label.translation = [10, m.poster.height + 10]
+        m.SubLabel.translation = [10, m.poster.height + 50]
+      end sub
+
+      sub updateLayout()
+        if m.top.height > 0 And m.top.width > 0 then
+          m.Poster.width  = m.top.width
+          m.Poster.height = m.top.height
+        end if
+      end sub
+    ]]>
+  </script>
+
+</component>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
+<component name="SpringBoard" extends="Group">
+  <children>
+    <Label id="Title" font="font:LargeBoldSystemFont" translation="[750, 250]" width="850" />
+    <ButtonGroup id="ButtonGroup" translation="[800,325]"/>
+    <Poster id="Image" translation="[300,250]"/>
+
+    <Label
+      id="Details"
+      height="300"
+      width="1300"
+      font="font:MediumBoldSystemFont"
+      text="PUT DETAILS TEXT HERE"
+      wrap="true"
+      translation="[300,600]" />
+  </children>
+
+  <script type="text/brightscript" uri="pkg:/components/SpringBoard.brs"/>
+</component>
