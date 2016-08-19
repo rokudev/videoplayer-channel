@@ -5,13 +5,14 @@
     <RowList
       id="CategoryRow"
       itemComponentName="CItem"
-      itemSize="[1920,500]"
+      itemSize="[1700,500]"
       rowHeights="[470]"
       rowItemSize="[[500,300]]"
       rowItemSpacing="[[100,20]]"
       numRows="4"
       rowLabelOffset="[[0,15]]"
       rowLabelFont="font:LargeBoldSystemFont"
+      rowLabelColor="0x333333"
       showRowCounter="[true]"
       showRowLabel="[true]"
       translation="[125,200]"/>

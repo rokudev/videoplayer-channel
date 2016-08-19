@@ -20,7 +20,9 @@
       sub Init()
         m.Poster = m.top.findNode("poster")
         m.Label = m.top.findNode("label")
+        m.Label.color = "#333333"
         m.SubLabel = m.top.findNode("sublabel")
+        m.SubLabel.color = "#444444"
       end sub
 
       sub itemContentChanged()
@@ -30,7 +32,7 @@
         updateLayout()
         m.Poster.uri = m.top.itemContent.HDPOSTERURL
         m.Label.translation = [10, m.poster.height + 20]
-        m.SubLabel.translation = [10, m.poster.height + 60]
+        m.SubLabel.translation = [10, m.poster.height + 65]
       end sub
 
       sub updateLayout()

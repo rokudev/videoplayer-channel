@@ -3,44 +3,7 @@
 sub init()
   print "UriHandler.brs - [init]"
   m.port = createObject("roMessagePort")
-  m.list = [
-    { '0'
-      Title:"Technology"
-      ContentList : invalid
-    }
-    { '1'
-      Title:"Entertainment"
-      ContentList : invalid
-    }
-    { '2'
-      Title:"Design"
-      ContentList : invalid
-    }
-    { '3'
-      Title:"The Mind"
-      ContentList: invalid
-    }
-    { '4'
-      Title:"Global Issues"
-      ContentList: invalid
-    }
-    { '5'
-      Title:"Music"
-      ContentList: invalid
-    }
-    { '6'
-      Title:"Inspiration"
-      ContentList: invalid
-    }
-    { '7'
-      Title:"Creativity"
-      ContentList: invalid
-    }
-    { '8'
-      Title:"Design"
-      ContentList: invalid
-    }
-  ]
+
   ' fields for checking if content has been loaded
   ' each row is assumed to be a different request for a rss feed
   m.top.count = 0
@@ -225,7 +188,6 @@ sub parseLeaf(job as object)
     if xml.feed <> invalid
       row = CreateObject("roSGNode", "ContentNode")
       row.title = title
-
       for each element in xml.getChildElements()
         if element.getChildElements() <> invalid
           contentNode = CreateObject("roSGNode","ContentNode")
@@ -236,8 +198,8 @@ sub parseLeaf(job as object)
               contentNode.title = child.getText()
             else if child.getname() = "contentId"
               contentnode.episodeNumber = child.gettext()
-            'else if child.getname() = "contentType"
-            ''  contentnode.contentType = child.gettext()
+            else if child.getname() = "genres"
+              contentnode.categories = child.getText()
             'else if child.getname() = "contentQuality"
             ''  contentnode.contentQuality = child.gettext()
             else if child.getname() = "media"
@@ -357,71 +319,3 @@ sub updateContent()
     print "Not all content has finished loading yet"
   end if
 end sub
-
-function ParseCategoryNode(category as object) as dynamic
-  aa = {}
-  'Parse Category Nodes
-  if category.getName() = "category"
-    print "category: " + category@title + " | " + category@description
-    aa.type = "normal"
-    aa.title = category@title
-    aa.description = category@description
-    aa.shortdescriptionline1 = category@title
-    aa.shortdescriptionline2 = category@description
-    aa.sdPosterUrl = category@sd_img
-    aa.hdposterurl = category@hd_img
-  else if category.getName() = "categoryLeaf"
-    aa.type = "normal"
-  else if category.getName() = "specialCategory"
-    if category.GetAttributes() <> invalid
-      for each attr in category.GetAttributes()
-        if attr = "type"
-          aa.type = category.GetAttributes()[a]
-          print "specialCategory: " + category@type + "|" + category@title + "|" + category@description
-          aa.title = category@title
-          aa.description = category@description
-          aa.shortdescriptionline1 = category@title
-          aa.shortdescriptionline2 = category@description
-          aa.sdPosterUrl = category@sd_img
-          aa.hdposterurl = category@hd_img
-        end if
-      Next
-    end if
-  else
-    'e.g. banner_ad
-    print "Skip Category: " + category.getName()
-    return invalid
-  end if
-
-  'get the list of child nodes and recursed
-  'through everything under the current node
-  for each e in category.GetBody()
-      name = e.GetName()
-      if name = "category" then
-          print "category: " + e@title + " [" + e@description + "]"
-          kid = ParseCategoryNode(e)
-          kid.Title = e@title
-          kid.Description = e@Description
-          kid.ShortDescriptionLine1 = xml@Description
-          kid.SDPosterURL = xml@sd_img
-          kid.HDPosterURL = xml@hd_img
-          aa.AddKid(kid)
-      else if name = "categoryLeaf" then
-          print "categoryLeaf: " + e@title + " [" + e@description + "]"
-          kid = ParseCategoryNode(e)
-          kid.Title = e@title
-          kid.Description = e@Description
-          kid.Feed = e@feed
-          aa.AddKid(kid)
-      else if name = "specialCategory" then
-          print "specialCategory: " + e@title + " [" + e@description + "]"
-          kid = ParseCategoryNode(e)
-          kid.Title = e@title
-          kid.Description = e@Description
-          kid.sd_img = e@sd_img
-          kid.hd_img = e@hd_img
-          kid.Feed = e@feed
-          aa.AddKid(kid)
-      end if
-  end for
-end function

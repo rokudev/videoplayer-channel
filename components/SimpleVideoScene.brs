@@ -17,16 +17,14 @@ sub init()
   m.UriHandler  = createObject("roSGNode","UriHandler")
   url = "http://rokudev.roku.com/rokudev/examples/videoplayer/xml/categories.xml"
   makeRequest({}, url, "GET", 0, "")
-  'm.ButtonGroup.setFocus(true)
-  'm.ButtonGroup.observeField("buttonSelected","onButtonSelected")
   m.UriHandler.observeField("content","onContentSet")
   m.UriHandler.observeField("categorycontent","onCategoryContentSet")
 end sub
 
 sub onRowItemSelected(event as object)
   print "onRowItemSelected"
-  item = m.HomeScreen.rowItemSelected[1]
-  node = m.HomeRow.content.getchild(0).getchild(item)
+  array = m.HomeScreen.rowItemSelected
+  node = m.HomeRow.content.getchild(array[0]).getchild(array[1])
   m.UriHandler.category = node.title
   m.UriHandler.contentSet = false
   print "m.URIHANDLER.CATEGORY: " ; m.UriHandler.category
@@ -51,8 +49,8 @@ end sub
 
 sub onCategoryItemSelected()
   print "onCategoryItemSelected"
-  item = m.CScreen.rowItemSelected[1]
-  node = m.CRow.content.getchild(0).getchild(item)
+  array = m.CScreen.rowItemSelected
+  node = m.CRow.content.getchild(array[0]).getchild(array[1])
   m.CScreen.visible = false
   m.SpringBoard.visible = true
   m.SpringList.setFocus(true)
@@ -80,7 +78,6 @@ sub onCategoryContentSet(event as object)
   m.HomeScreen.visible = false
   m.CScreen.visible = true
   m.CRow.setFocus(true)
-  'm.UriHandler.numRowsReceived = 0
   'm.UriHandler.contentSet = false
 end sub
 
@@ -122,16 +119,18 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
       if m.Warning.visible
         m.Warning.visible = false
         return true
-      else if m.Video.visible
-        m.Video.control = "stop"
-        m.Video.visible = false
-        m.ButtonGroup.setFocus(true)
-        return true
       else if m.CScreen.visible
+        print "Close the categories screen"
         m.CScreen.visible = false
         m.CRow.content = invalid
         m.HomeScreen.visible = true
         m.HomeRow.setFocus(true)
+        return true
+      else if m.SpringBoard.visible
+        print "Close the SpringDetails"
+        m.SpringBoard.visible = false
+        m.CScreen.visible = true
+        m.CRow.setFocus(true)
         return true
       else
         return false
@@ -142,6 +141,10 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         m.Warning.visible = false
         return true
       end if
+    else if key = "left"
+
+    else if key = "right"
+
     else
       return false
     end if

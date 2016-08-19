@@ -2,32 +2,50 @@
 <!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
 <component name="SpringBoard" extends="Group">
   <children>
-    <Label id="Title" font="font:MediumBoldSystemFont" translation="[750, 250]" width="850" />
+    <Group id="SpringBoardDetails">
+      <Label id="Title" font="font:MediumBoldSystemFont" translation="[750, 250]" width="850" />
 
+      <LabelList
+        id="LabelList"
+        vertFocusAnimationStyle="fixedFocusWrap"
+        translation="[800,325]"
+        itemSize="[600,48]"
+        color="#222222"
+        focusedColor="#222222">
+        <ContentNode id="Labels" role="content">
+          <ContentNode title="Play from start"/>
+        </ContentNode>
+      </LabelList>
 
-    <LabelList id="LabelList" translation="[800,325]" itemSize="[500,48]">
-      <ContentNode id="Labels" role="content">
-        <ContentNode title="Play"/>
-        <!--<ContentNode title="Back"/>-->
-      </ContentNode>
-    </LabelList>
+      <Rectangle
+        color="#111111"
+        width="400"
+        height="300"
+        translation="[293,243]"
+        opacity=".9" />
 
-    <Poster id="Image" translation="[300,250]"/>
+      <Poster id="Image" translation="[300,250]"/>
 
-    <Label
-      id="CategoryLabel"
-      font="font:MediumBoldSystemFont"
-      translation="[300, 600]" />
+      <Label
+        id="CategoryLabel"
+        font="font:LargeBoldSystemFont"
+        translation="[300, 600]" />
 
-    <Label
-      id="Details"
-      height="300"
-      width="1300"
-      font="font:MediumBoldSystemFont"
-      text="PUT DETAILS TEXT HERE"
-      wrap="true"
-      translation="[300,600]" />
+      <Label
+        id="Details"
+        height="300"
+        width="1300"
+        font="font:MediumBoldSystemFont"
+        text="PUT DETAILS TEXT HERE"
+        wrap="true"
+        translation="[300,675]" />
 
+      <Label
+        id="RuntimeLabel"
+        text="Video Length:"
+        font="font:LargeBoldSystemFont"
+        translation="[300,875]" />
+    </Group>
     <Video
       id="Video"
       width="1920"
@@ -38,7 +56,9 @@
 
   <interface>
     <field id="content" type="node" onChange="onContentChange"/>
+    <field id="itemSelected" type="integer" alias="LabelList.itemSelected" onChange="onItemSelected"/>
   </interface>
 
+  <script type="text/brightscript" uri="pkg:/components/generalUtils.brs"/>
   <script type="text/brightscript" uri="pkg:/components/SpringBoard.brs"/>
 </component>

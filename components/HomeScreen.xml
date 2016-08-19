@@ -9,6 +9,7 @@
       rowHeights="[500]"
       rowItemSize="[[500,300]]"
       rowItemSpacing="[[100,0]]"
+      rowLabelColor="0x333333"
       numRows="1"
       showRowCounter="[false]"
       translation="[125,400]"/>
