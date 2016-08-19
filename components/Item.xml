@@ -5,8 +5,8 @@
 
   <children>
       <Poster id="poster" />
-      <Label  id="label"    font="font:MediumBoldSystemFont" text="PLACEHOLDER" />
-      <Label  id="sublabel" font="font:SmallBoldSystemFont"  text="PLACEHOLDER" />
+      <Label  id="label"    font="font:MediumBoldSystemFont" text="" horizAlign="center" />
+      <Label  id="sublabel" font="font:SmallBoldSystemFont"  text="" horizAlign="center" />
   </children>
 
   <interface>
@@ -29,14 +29,16 @@
         m.SubLabel.text = m.top.itemcontent.shortdescriptionline2
         updateLayout()
         m.Poster.uri = m.top.itemContent.HDPOSTERURL
-        m.Label.translation = [10, m.poster.height + 10]
-        m.SubLabel.translation = [10, m.poster.height + 50]
+        m.Label.translation = [10, m.poster.height + 20]
+        m.SubLabel.translation = [10, m.poster.height + 60]
       end sub
 
       sub updateLayout()
         if m.top.height > 0 And m.top.width > 0 then
           m.Poster.width  = m.top.width
           m.Poster.height = m.top.height
+          m.Label.width = m.top.width
+          m.SubLabel.width = m.top.width
         end if
       end sub
     ]]>

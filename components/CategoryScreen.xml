@@ -6,13 +6,15 @@
       id="CategoryRow"
       itemComponentName="CItem"
       itemSize="[1920,500]"
-      rowHeights="[500]"
+      rowHeights="[470]"
       rowItemSize="[[500,300]]"
-      rowItemSpacing="[[100,0]]"
+      rowItemSpacing="[[100,20]]"
       numRows="4"
+      rowLabelOffset="[[0,15]]"
+      rowLabelFont="font:LargeBoldSystemFont"
       showRowCounter="[true]"
       showRowLabel="[true]"
-      translation="[125,400]"/>
+      translation="[125,200]"/>
   </children>
 
   <interface>

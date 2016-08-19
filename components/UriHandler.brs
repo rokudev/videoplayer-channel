@@ -50,6 +50,7 @@ sub init()
   m.top.contentSet = false
   ' Stores the content if not all requests are ready
   m.top.ContentCache = createObject("roSGNode", "ContentNode")
+  m.top.Cache        = createObject("roSGNode", "Node")
   ' setting callbacks for url request and response
   m.top.observeField("request", m.port)
   m.top.observeField("encodeRequest", m.port)
@@ -110,7 +111,6 @@ function addRequest(request as Object) as Boolean
   print "UriHandler.brs - [addRequest]"
   if type(request) = "roAssociativeArray"
     context = request.context
-    print "CONTEXT: " ; context
   	if type(context) = "roSGNode"
       parameters = context.parameters
       if type(parameters)="roAssociativeArray"
@@ -338,15 +338,21 @@ end sub
 ' Callback function for when content has finished parsing
 sub updateContent()
   print "UriHandler.brs - [updateContent]"
+  print "NUMROWS: " ; m.top.numRows
+  print "NUMROWSRECEIVED: " ; m.top.numRowsReceived
+  print "NUMCURRENTROWS: " ; m.top.numCurrentRows
   if m.top.contentSet return
   if m.top.numRows - 1 = m.top.numRowsReceived
     parent = createObject("roSGNode", "ContentNode")
-    for i = 0 to m.top.numRowsReceived
+    for i = (m.top.numRows - m.top.numCurrentRows) to m.top.numRowsReceived
       parent.appendchild(m.top.contentCache.getField(i.toStr()))
     end for
     print "All content has finished loading"
     m.top.contentSet = true
     m.top.categorycontent = parent
+    itemToCache = {}
+    itemToCache[m.top.category] = parent
+    AddAndSetFields(m.top.cache, itemToCache)
   else
     print "Not all content has finished loading yet"
   end if

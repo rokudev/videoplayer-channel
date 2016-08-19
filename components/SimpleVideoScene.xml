@@ -15,19 +15,16 @@
       logoUri="pkg:/images/Overhang_Logo_HD.png"
       backgroundUri="pkg:/images/Overhang_Background_SD.png"/>
 
-    <Video
-      id="Video"
-      width="1920"
-      height="1080"
-      translation="[0,0]"
-      visible="false"/>
-
     <HomeScreen
       id="HomeScreen"
       visible="false"/>
 
     <CategoryScreen
       id="CategoryScreen"
+      visible="false"/>
+
+    <SpringBoard
+      id="SpringBoard"
       visible="false"/>
 
     <Dialog
@@ -39,6 +36,7 @@
 
   <interface>
     <field id="homeRowItemSelected" type="intarray" alias="HomeScreen.rowItemSelected" onChange="onRowItemSelected"/>
+    <field id="cateRowItemSelected" type="intarray" alias="CategoryScreen.rowItemSelected" onChange="onCategoryItemSelected"/>
     <field id="category" type="string" />
   </interface>
 

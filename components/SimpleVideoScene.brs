@@ -6,11 +6,13 @@ sub init()
   m.Exiter      = m.top.findNode("Exiter")
   m.Warning     = m.top.findNode("Warning")
   m.HomeScreen  = m.top.findNode("HomeScreen")
+  m.SpringBoard = m.top.findNode("SpringBoard")
+  m.SpringList  = m.top.findNode("LabelList")
   m.HomeRow     = m.top.findNode("HomeRow")
   m.CScreen     = m.top.findNode("CategoryScreen")
   m.CRow        = m.top.findNode("CategoryRow")
 
-  m.cache = {}
+  m.temp = invalid
 
   m.UriHandler  = createObject("roSGNode","UriHandler")
   url = "http://rokudev.roku.com/rokudev/examples/videoplayer/xml/categories.xml"
@@ -25,12 +27,16 @@ sub onRowItemSelected(event as object)
   print "onRowItemSelected"
   item = m.HomeScreen.rowItemSelected[1]
   node = m.HomeRow.content.getchild(0).getchild(item)
-  m.top.category = node.title
-  'if m.cache.lookup(m.top.category) <> invalid
-  ''  setCategoryContent()
-  ''  return
-  'end if
+  m.UriHandler.category = node.title
+  m.UriHandler.contentSet = false
+  print "m.URIHANDLER.CATEGORY: " ; m.UriHandler.category
+
+  if m.UriHandler.cache.hasField(m.UriHandler.category)
+    setCategoryContent()
+    return
+  end if
   m.uriHandler.numRows += node.count
+  m.uriHandler.numCurrentRows = node.count
   for each field in node.getFields()
     if type(node.getField(field)) = "roAssociativeArray"
       if field <> "change"
@@ -43,10 +49,19 @@ sub onRowItemSelected(event as object)
   end for
 end sub
 
+sub onCategoryItemSelected()
+  print "onCategoryItemSelected"
+  item = m.CScreen.rowItemSelected[1]
+  node = m.CRow.content.getchild(0).getchild(item)
+  m.CScreen.visible = false
+  m.SpringBoard.visible = true
+  m.SpringList.setFocus(true)
+  m.SpringBoard.content = node
+end sub
+
 sub setCategoryContent()
   print "setCategoryContent"
-  m.CRow.content = invalid
-  m.CRow.content = m.Cache[m.top.category]
+  m.CRow.content = m.UriHandler.Cache[m.UriHandler.category]
   m.HomeScreen.visible = false
   m.CScreen.visible = true
   m.CRow.setFocus(true)
@@ -65,9 +80,8 @@ sub onCategoryContentSet(event as object)
   m.HomeScreen.visible = false
   m.CScreen.visible = true
   m.CRow.setFocus(true)
-  m.UriHandler.contentSet = false
-  m.UriHandler.numRowsReceived = 0
-  'if m.cache.lookup(m.top.category) = invalid then m.cache[m.top.category] = m.CRow.content
+  'm.UriHandler.numRowsReceived = 0
+  'm.UriHandler.contentSet = false
 end sub
 
 sub makeRequest(headers as object, url as String, method as String, num as Integer, title as String)
@@ -115,6 +129,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
         return true
       else if m.CScreen.visible
         m.CScreen.visible = false
+        m.CRow.content = invalid
         m.HomeScreen.visible = true
         m.HomeRow.setFocus(true)
         return true

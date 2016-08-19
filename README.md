@@ -1,11 +1,10 @@
-# SimpleVideoPlayer Example
+# videoplayer-channel example
 ![Roku](https://img.shields.io/badge/Roku-Dev-blue.svg)
 
-SimpleVideoPlayer Sample Channel for the Roku Platform.
+VideoPlayer Sample Channel for the Roku Platform.
 
 ## Use case
-This sample channel should be used as a starter template for your channel development. It is a barebones template for displaying one piece of content
-on a springboard.  
+This sample channel should be used as a starter template for your channel development. It is a barebones template for displaying categories of content.
 
 ## How to run this sample
 - Zip up the entire project directory and deploy to your roku device. Follow the developer set-up guide here for a quick guide on how to do so: https://blog.roku.com/developer/2016/02/04/developer-setup-guide/
@@ -23,3 +22,11 @@ on a springboard.
   - **SimpleVideoScene.brs/xml:** The main scene.
 - **Images:** Contains image assets used in the channel
 - **Source:** Contains the main brightscript file that runs right when the channel starts
+
+'m.CRow.content = invalid
+'m.UriHandler.categorycontent = invalid
+'fieldnames = []
+'for i = 0 to m.UriHandler.numRows
+''  fieldnames.push(i.tostr())
+'end for
+'m.UriHandler.ContentCache.removeFields(fieldnames)

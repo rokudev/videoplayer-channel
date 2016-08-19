@@ -2,9 +2,22 @@
 <!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
 <component name="SpringBoard" extends="Group">
   <children>
-    <Label id="Title" font="font:LargeBoldSystemFont" translation="[750, 250]" width="850" />
-    <ButtonGroup id="ButtonGroup" translation="[800,325]"/>
+    <Label id="Title" font="font:MediumBoldSystemFont" translation="[750, 250]" width="850" />
+
+
+    <LabelList id="LabelList" translation="[800,325]" itemSize="[500,48]">
+      <ContentNode id="Labels" role="content">
+        <ContentNode title="Play"/>
+        <!--<ContentNode title="Back"/>-->
+      </ContentNode>
+    </LabelList>
+
     <Poster id="Image" translation="[300,250]"/>
+
+    <Label
+      id="CategoryLabel"
+      font="font:MediumBoldSystemFont"
+      translation="[300, 600]" />
 
     <Label
       id="Details"
@@ -14,7 +27,18 @@
       text="PUT DETAILS TEXT HERE"
       wrap="true"
       translation="[300,600]" />
+
+    <Video
+      id="Video"
+      width="1920"
+      height="1080"
+      translation="[0,0]"
+      visible="false"/>
   </children>
+
+  <interface>
+    <field id="content" type="node" onChange="onContentChange"/>
+  </interface>
 
   <script type="text/brightscript" uri="pkg:/components/SpringBoard.brs"/>
 </component>
