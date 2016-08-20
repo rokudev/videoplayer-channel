@@ -29,7 +29,15 @@ sub onContentChange(event as object)
   m.Image.uri = content.hdposterurl
   m.Title.text = content.title
   m.Details.text = content.description
+  print "DETAILS HEIGHT: " + m.Details.height.toStr()
+  print "FONT HEIGHT: " + m.Details.font.size.toStr()
+  x = m.Details.localBoundingRect()
+  print "BOUNDINGRECT HEIGHT: " + x.height.toStr()
+  print "BEFORE: " ;  m.RuntimeLabel.translation
   m.RuntimeLabel.text = "Length: " + minutes.toStr() + " minutes " + seconds.toStr() + " seconds"
+  translation = [m.RuntimeLabel.translation[0], m.Details.translation[1] + x.height + 30]
+  m.RuntimeLabel.translation = translation
+  print "AFTER: " ;  m.RuntimeLabel.translation
   m.CategoryLabel.text = content.categories
 
   ContentNode = CreateObject("roSGNode", "ContentNode")
@@ -85,21 +93,3 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
   end if
   return false
 end function
-
-'******************************************************
-'Get remaining hours from a total seconds
-'******************************************************
-Function hoursLeft(seconds As Integer) As Integer
-  hours% = seconds / 3600
-  return hours%
-End Function
-
-'******************************************************
-'Get remaining minutes from a total seconds
-'******************************************************
-Function minutesLeft(seconds As Integer) As Integer
-  hours% = seconds / 3600
-  mins% = seconds - (hours% * 3600)
-  mins% = mins% / 60
-  return mins%
-End Function

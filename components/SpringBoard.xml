@@ -24,7 +24,9 @@
         translation="[293,243]"
         opacity=".9" />
 
-      <Poster id="Image" translation="[300,250]"/>
+      <Poster
+        id="Image"
+        translation="[300,250]"/>
 
       <Label
         id="CategoryLabel"
@@ -33,7 +35,6 @@
 
       <Label
         id="Details"
-        height="300"
         width="1300"
         font="font:MediumBoldSystemFont"
         text="PUT DETAILS TEXT HERE"
