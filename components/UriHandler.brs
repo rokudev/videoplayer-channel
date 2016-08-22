@@ -3,9 +3,7 @@
 sub init()
   print "UriHandler.brs - [init]"
   m.port = createObject("roMessagePort")
-
   ' fields for checking if content has been loaded
-  ' each row is assumed to be a different request for a rss feed
   m.top.count = 0
   m.top.numRows = 0
   m.top.numRowsReceived = 0
@@ -21,7 +19,6 @@ sub init()
   ' setting the task thread function
   m.top.functionName = "go"
   m.top.control = "RUN"
-
 end sub
 
 'Task function
@@ -300,9 +297,6 @@ end sub
 ' Callback function for when content has finished parsing
 sub updateContent()
   print "UriHandler.brs - [updateContent]"
-  print "NUMROWS: " ; m.top.numRows
-  print "NUMROWSRECEIVED: " ; m.top.numRowsReceived
-  print "NUMCURRENTROWS: " ; m.top.numCurrentRows
   if m.top.contentSet return
   if m.top.numRows - 1 = m.top.numRowsReceived
     parent = createObject("roSGNode", "ContentNode")
