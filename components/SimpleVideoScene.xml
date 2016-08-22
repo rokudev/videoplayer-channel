@@ -2,6 +2,7 @@
 <!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
 <component name="SimpleVideoScene" extends="Scene">
   <children>
+    <RegistryTask id="RegistryTask"/>
 
     <Rectangle
       color="#DFDFDF"
@@ -31,7 +32,6 @@
       id="Warning"
       visible="false" />
 
-    <Exiter id="Exiter"/>
   </children>
 
   <interface>

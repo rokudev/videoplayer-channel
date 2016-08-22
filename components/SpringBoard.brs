@@ -29,15 +29,10 @@ sub onContentChange(event as object)
   m.Image.uri = content.hdposterurl
   m.Title.text = content.title
   m.Details.text = content.description
-  print "DETAILS HEIGHT: " + m.Details.height.toStr()
-  print "FONT HEIGHT: " + m.Details.font.size.toStr()
   x = m.Details.localBoundingRect()
-  print "BOUNDINGRECT HEIGHT: " + x.height.toStr()
-  print "BEFORE: " ;  m.RuntimeLabel.translation
   m.RuntimeLabel.text = "Length: " + minutes.toStr() + " minutes " + seconds.toStr() + " seconds"
   translation = [m.RuntimeLabel.translation[0], m.Details.translation[1] + x.height + 30]
   m.RuntimeLabel.translation = translation
-  print "AFTER: " ;  m.RuntimeLabel.translation
   m.CategoryLabel.text = content.categories
 
   ContentNode = CreateObject("roSGNode", "ContentNode")
@@ -53,11 +48,12 @@ sub onContentChange(event as object)
   m.Video.content = ContentNode
 end sub
 
-sub onItemSelected()
+sub onItemSelected(event as object)
   print "onItemSelected"
+  m.Video.control = "play"
+  if event.getData() <> 0 then m.Video.seek = m.top.seekposition
   m.SpringDetails.visible = false
   m.Video.visible = true
-  m.Video.control = "play"
   m.Video.setFocus(true)
 end sub
 
@@ -68,15 +64,25 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     if key = "back"
       print "------ [back pressed] ------"
       if m.Video.visible
-        m.Video.control = "stop"
+        m.Video.control = "pause"
         m.Video.visible = false
         m.SpringDetails.visible = true
-        if m.Video.position <> invalid or m.Video.position <> 0
-          minutes = m.Video.position \ 60
-          seconds = m.Video.position MOD 60
+        position = m.Video.position
+        if position > 0
+          if m.LabelList.content.getChildCount() > 1 then m.LabelList.content.removeChildIndex(1)
+          minutes = position \ 60
+          seconds = position MOD 60
           contentNode = createObject("roSGNode","ContentNode")
           contentNode.title = "Resume Video (" + minutes.toStr() + " min " + seconds.toStr() + " sec)"
           m.LabelList.content.appendChild(contentNode)
+          'Write position to registry so that re-opening the channel works
+          m.global.registryTask.write = {
+            contentid: m.top.content.episodenumber,
+            position: position.toStr()
+          }
+          m.top.seekposition = position
+        else
+          print "Do nothing"
         end if
         m.LabelList.setFocus(true)
         return true
@@ -85,8 +91,6 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
       end if
     else if key = "OK"
       print "------- [ok pressed] -------"
-      'm.ButtonGroup.setFocus(true)
-      'return true
     else
       return false
     end if

@@ -57,6 +57,7 @@
 
   <interface>
     <field id="content" type="node" onChange="onContentChange"/>
+    <field id="seekPosition" type="float"/>
     <field id="itemSelected" type="integer" alias="LabelList.itemSelected" onChange="onItemSelected"/>
   </interface>
 
