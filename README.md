@@ -3,6 +3,11 @@
 
 VideoPlayer Sample Channel for the Roku Platform.
 
+![VideoPlayerHome](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerHome.jpg "VideoPlayerHome")
+![VideoPlayerCategories](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerCategories.jpg "VideoPlayerCategories")
+![VideoPlayerSpringboard](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerSpringBoard.jpg "VideoPlayerSpringboard")
+
+
 ## Overview
 Many developers as of August 23, 2016 have either published or are publishing channels based on the sample template channel "VideoPlayer." This channel was built to help Roku developers using the "VideoPlayer" template migrate their channels to SceneGraph. Roku encourages developers to start using Roku SceneGraph to create performant channels on the platform.
 
