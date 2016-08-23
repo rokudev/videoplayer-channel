@@ -27,17 +27,20 @@ sub Main(input as Dynamic)
       'launch/prep the content mapped to the contentID here
     end if
   end if
-  showHeroScreen()
+  showHeroScreen(input)
 end sub
 
 ' Initializes the scene and shows the main homepage.
 ' Handles closing of the channel.
-sub showHeroScreen()
+sub showHeroScreen(input as object)
   print "main.brs - [showHeroScreen]"
   screen = CreateObject("roSGScreen")
   m.port = CreateObject("roMessagePort")
   screen.setMessagePort(m.port)
-  scene = screen.CreateScene("SimpleVideoScene")
+  scene = screen.CreateScene("VideoScene")
+  m.global = screen.getGlobalNode()
+  'Deep link params
+  m.global.addFields({ input: input })
   screen.show()
 
   while(true)

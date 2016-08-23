@@ -19,14 +19,14 @@
     <field id="numRowsReceived" type="integer"/>
     <!-- # of requests that have bad/no content -->
     <field id="numBadRequests" type="integer" value="0"/>
-
     <field id="numCurrentRows" type="integer" value="0"/>
 
     <!-- variable so updateContent only runs once -->
     <field id="contentSet" type="boolean"/>
-    <!-- Cache of content -->
+    <!-- Caching content removes redundant url requests -->
     <field id="ContentCache" type="node"/>
     <field id="Cache"        type="node"/>
+    <!-- Field to store category tag for the current content item -->
     <field id="Category"     type="string"/>
   </interface>
 

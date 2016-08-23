@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
-<component name="SimpleVideoScene" extends="Scene">
+<component name="VideoScene" extends="Scene">
   <children>
     <RegistryTask id="RegistryTask"/>
 
@@ -13,6 +13,7 @@
 
     <Overhang
       showClock="true"
+      clockColor="0x111111"
       logoUri="pkg:/images/Overhang_Logo_HD.png"
       backgroundUri="pkg:/images/Overhang_Background_SD.png"/>
 
@@ -41,5 +42,5 @@
   </interface>
 
   <script type="text/brightscript" uri="pkg:/components/SGHelperFunctions.brs"/>
-  <script type="text/brightscript" uri="pkg:/components/SimpleVideoScene.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/VideoScene.brs"/>
 </component>

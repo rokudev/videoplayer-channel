@@ -3,10 +3,22 @@
 
 VideoPlayer Sample Channel for the Roku Platform.
 
+## Overview
+Many developers as of August 23, 2016 have either published or are publishing channels based on the sample template channel "VideoPlayer." This channel was built to help Roku developers using the "VideoPlayer" template migrate their channels to SceneGraph. Roku encourages developers to start using Roku SceneGraph to create performant channels on the platform.
+
+## Migration Guide
+- Move all images into the images folder
+- To recreate the overhang:
+  - Overhang_Logo_HD/SD.png can be used on line 17 in `VideoScene.xml`
+  - Overhang_Background_HD/SD.png can be used on line 18 in `VideoScene.xml`
+- Update the manifest (Channel Posters/Splashart) to reference the corresponding image assets.
+- To request the feed:
+  - Replace the url string on line 22 in `VideoScene.brs` with the link to the feed
+  - If the structure of your XML feed matches the VideoPlayer sample feed, there are no other changes that need to be made!
+
 ## Use case
-- This sample channel was developed to demonstrate how to migrate your channel from Roku SDK1 (BrightScript only) to SceneGraph SDK 2. This channel has most of the functionality that was included in the original "videoplayer" template channel in SDK1.
-- Read the migration guide that goes along with this channel to get a better understanding of how things fit together.
-- This channel should be used as a starter template for your channel development. It is a barebones template for displaying categories of content.
+- This sample channel was developed to demonstrate how to migrate your channel from Roku SDK1 (BrightScript only) to SceneGraph SDK 2 (BrightScript + SceneGraph). This channel has most of the functionality that was included in the original "videoplayer" template channel in SDK1.
+- This channel should be used as a starter template for your channel development. It is a barebones template for displaying categories of content from an XML feed.
 
 ## How to run this sample
 - Zip up the entire project directory and deploy to your roku device. Follow the developer set-up guide here for a quick guide on how to do so: https://blog.roku.com/developer/2016/02/04/developer-setup-guide/
@@ -16,9 +28,11 @@ VideoPlayer Sample Channel for the Roku Platform.
   - Roku Deploy package for Atom: https://atom.io/packages/roku-deploy
 
 ## Features
+- All the assets used in the SDK1 VideoPlayer example can be used in this channel without any changes.
 - Replicates the UI and functionality of the SDK1 VideoPlayer example
   - Saves the position that the user left off at during the previous session
     - i.e. if you don't finish a video, you can resume at where you left off even if you restarted the channel.
+- Two task components (nodes that extend task) are used to demonstrate how to perform actions on a task thread. More specifically, (1) Url requests/responses and (2) reading/writing from registry can't be done in the render thread and must be done in a task thread. Both task components have fields in their interfaces to allow other components to interact with them. The fields include
 
 ## Directory Structure
 - **Components:** The Scene Graph components
@@ -30,9 +44,12 @@ VideoPlayer Sample Channel for the Roku Platform.
   - **Task.xml** A task node used to read/write from registry.
   - **UriHandler.brs/xml** A task node used for handling url request/responses.
   - **SGHelperFunctions.xml** Script with useful SG functions.
-  - **SimpleVideoScene.brs/xml:** The main scene. Controls most navigation logic
+  - **VideoScene.brs/xml:** The main scene. Controls most navigation logic
 - **Images:** Contains image assets used in the channel
 - **Source:** Contains the main brightscript file that runs right when the channel starts
 
-## Feature Requests?
-- Please submit an issue on this repository or post on the Roku forums about this channel. I will try to respond as soon as possible :)
+## Feature Requests
+- Please submit an issue on this repository or post on the Roku forums about this channel. To create an issue: https://help.github.com/articles/creating-an-issue/ The Roku forum: https://forums.roku.com/
+
+## Warning
+- This sample does not utilize deep-linking and warning dialog messages but has them in the code if a developer desires to use them.
