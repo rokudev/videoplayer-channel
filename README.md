@@ -37,7 +37,7 @@ Many developers as of August 23, 2016 have either published or are publishing ch
 - Replicates the UI and functionality of the SDK1 VideoPlayer example
   - Saves the position that the user left off at during the previous session
     - i.e. if you don't finish a video, you can resume at where you left off even if you restarted the channel.
-- Two task components (nodes that extend task) are used to demonstrate how to perform actions on a task thread. More specifically, (1) Url requests/responses and (2) reading/writing from registry can't be done in the render thread and must be done in a task thread. Both task components have fields in their interfaces to allow other components to interact with them. The fields include
+- Two task components (nodes that extend task) are used to demonstrate how to perform actions on a task thread. More specifically, (1) Url requests/responses and (2) reading/writing from registry can't be done in the render thread and must be done in a task thread. Both task components have fields in their interfaces to allow other components to interact with them. https://sdkdocs.roku.com/display/sdkdoc/Scene+Graph+BrightScript+Support
 
 ## Directory Structure
 - **Components:** The Scene Graph components
