@@ -3,15 +3,16 @@
 
 VideoPlayer Sample Channel for the Roku Platform.
 
-The Categories Screen
+
+**The Categories Screen**
 
 ![VideoPlayerHome](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerHome.jpg "VideoPlayerHome")
 
-The Screen after clicking on a category
+**The Screen after clicking on a category**
 
 ![VideoPlayerCategories](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerCategories.jpg "VideoPlayerCategories")
 
-The Springboard 
+**The Springboard**
 
 ![VideoPlayerSpringboard](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerSpringBoard.jpg "VideoPlayerSpringboard")
 
