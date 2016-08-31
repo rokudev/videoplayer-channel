@@ -3,10 +3,17 @@
 
 VideoPlayer Sample Channel for the Roku Platform.
 
-![VideoPlayerHome](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerHome.jpg "VideoPlayerHome")
-![VideoPlayerCategories](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerCategories.jpg "VideoPlayerCategories")
-![VideoPlayerSpringboard](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerSpringBoard.jpg "VideoPlayerSpringboard")
+The Categories Screen
 
+![VideoPlayerHome](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerHome.jpg "VideoPlayerHome")
+
+The Screen after clicking on a category
+
+![VideoPlayerCategories](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerCategories.jpg "VideoPlayerCategories")
+
+The Springboard 
+
+![VideoPlayerSpringboard](https://raw.githubusercontent.com/rokudev/videoplayer-channel/master/images/VideoPlayerSpringBoard.jpg "VideoPlayerSpringboard")
 
 ## Overview
 Many developers as of August 23, 2016 have either published or are publishing channels based on the sample template channel "VideoPlayer." This channel was built to help Roku developers using the "VideoPlayer" template migrate their channels to SceneGraph. Roku encourages developers to start using Roku SceneGraph to create performant channels on the platform.
@@ -20,6 +27,7 @@ Many developers as of August 23, 2016 have either published or are publishing ch
 - To request the feed:
   - Replace the url string on line 22 in `VideoScene.brs` with the link to the feed
   - If the structure of your XML feed matches the VideoPlayer sample feed, there are no other changes that need to be made!
+- roElements turn into SceneGraph nodes... for example, roPosterScreens are converted into SceneGraph RowLists.
 
 ## Use case
 - This sample channel was developed to demonstrate how to migrate your channel from Roku SDK1 (BrightScript only) to SceneGraph SDK 2 (BrightScript + SceneGraph). This channel has most of the functionality that was included in the original "videoplayer" template channel in SDK1.
