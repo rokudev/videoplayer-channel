@@ -62,8 +62,13 @@ Many developers as of August 23, 2016 have either published or are publishing ch
 - **Images:** Contains image assets used in the channel
 - **Source:** Contains the main brightscript file that runs right when the channel starts
 
-## Feature Requests
-- Please submit an issue on this repository or post on the Roku forums about this channel. To create an issue: https://help.github.com/articles/creating-an-issue/ The Roku forum: https://forums.roku.com/
+## Issues / Feature Requests
+- Please submit an issue on this repository or post on the Roku forums about this channel. 
+- To create an issue: https://help.github.com/articles/creating-an-issue/ 
+- The Roku forum: https://forums.roku.com/
+- If you have features that you have implemented and want to contribute to this channel's development, submit a pull request! 
+- To create a pull request: https://help.github.com/articles/creating-a-pull-request/
+- What is a pull request? https://help.github.com/articles/about-pull-requests/ 
 
 ## Warning
 - This sample does not utilize deep-linking and warning dialog messages but has them in the code if a developer desires to use them.
