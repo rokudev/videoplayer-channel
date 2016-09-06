@@ -1,7 +1,6 @@
-# videoplayer-channel example
-![Roku](https://img.shields.io/badge/Roku-Dev-blue.svg)
+# VideoPlayer Sample Channel
 
-VideoPlayer Sample Channel for the Roku Platform.
+_Sample channel for migrating off our legacy SDK_
 
 
 **The Categories Screen**
