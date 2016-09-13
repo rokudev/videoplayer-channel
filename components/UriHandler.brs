@@ -108,8 +108,8 @@ function addRequest(request as Object) as Boolean
   		    print "Initiating transfer '"; idkey; "' for URI '"; uri; "'"; " succeeded: "; ok
         else
           print "Error: invalid uri: "; uri
-          m.top.numBadRequests++
-  			end if
+          m.top.numBadRequests = m.top.numBadRequests + 1
+  	    end if
       else
         print "Error: parameters is the wrong type: " + type(parameters)
         return false
@@ -160,8 +160,8 @@ sub processResponse(msg as Object)
       parseUnfollow(true)
     else
       if result.num > 0 and result.num < 3
-        m.top.numBadRequests++
-        m.top.numRowsReceived++
+        m.top.numBadRequests = m.top.numBadRequests + 1
+        m.top.numRowsReceived = m.top.numRowsReceived + 1
       else
         print "Error: status code was: " + (msg.GetResponseCode()).toStr()
       end if
@@ -224,7 +224,7 @@ sub parseLeaf(job as object)
           row.appendChild(contentNode)
         end if
       end for
-      if m.top.contentcache.hasfield(m.top.numRowsReceived.tostr()) then m.top.numRowsReceived++
+      if m.top.contentcache.hasfield(m.top.numRowsReceived.tostr()) then m.top.numRowsReceived = m.top.numRowsReceived + 1
       contentAA = {}
       contentAA[m.top.numRowsReceived.toStr()] = row
       m.top.contentCache.addFields(contentAA)
@@ -278,7 +278,7 @@ sub parseResponse(job as object)
               a = {}
               a[subAA.title] = subAA
               AddAndSetFields(contentNode, a)
-              m.count++
+              m.count = m.count + 1
             end for
             AddAndSetFields(contentNode,{count: m.count})
             AddAndSetFields(contentNode, aa)
