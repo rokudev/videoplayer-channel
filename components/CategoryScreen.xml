@@ -21,4 +21,6 @@
   <interface>
     <field id="RowItemSelected" type="intarray" alias="CategoryRow.rowItemSelected"/>
   </interface>
+  
+  <script type="text/brightscript" uri="pkg:/components/HomeScreen.brs"/>
 </component>
