@@ -41,6 +41,6 @@
     <field id="category" type="string" />
   </interface>
 
-  <script type="text/brightscript" uri="pkg:/components/SGHelperFunctions.brs"/>
-  <script type="text/brightscript" uri="pkg:/components/VideoScene.brs"/>
+  <script type="text/brightscript" uri="pkg:/source/utils/SGHelperFunctions.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/scenes/VideoScene.brs"/>
 </component>

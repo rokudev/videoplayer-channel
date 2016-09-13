@@ -8,5 +8,5 @@
     <field id="write" type="assocarray"/>
   </interface>
 
-  <script type="text/brightscript" uri="pkg:/components/Task.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/tasks/Task.brs"/>
 </component>

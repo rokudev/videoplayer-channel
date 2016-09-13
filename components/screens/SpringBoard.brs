@@ -43,7 +43,7 @@ sub onContentChange(event as object)
   ContentNode.ShortDescriptionLine1 = content.title
   ContentNode.StarRating = 80
   ContentNode.Length = 1972
-  ContentNode.subtitleConfig = {Trackname: "pkg:/source/CraigVenter.srt" }
+  ContentNode.subtitleConfig = {Trackname: "pkg:/data/CraigVenter.srt" }
 
   m.Video.content = ContentNode
 end sub

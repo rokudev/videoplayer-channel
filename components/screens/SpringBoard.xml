@@ -61,6 +61,6 @@
     <field id="itemSelected" type="integer" alias="LabelList.itemSelected" onChange="onItemSelected"/>
   </interface>
 
-  <script type="text/brightscript" uri="pkg:/components/generalUtils.brs"/>
-  <script type="text/brightscript" uri="pkg:/components/SpringBoard.brs"/>
+  <script type="text/brightscript" uri="pkg:/source/utils/generalUtils.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/screens/SpringBoard.brs"/>
 </component>
