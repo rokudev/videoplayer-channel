@@ -1,3 +1,6 @@
 .tags
 .tags1
 .DS_Store
+out/*
+.buildpath
+.project

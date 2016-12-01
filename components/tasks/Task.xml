@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 Roku Corp.  All Rights Reserved. -->
+<component name="RegistryTask" extends="Task">
+
+  <interface>
+    <field id="read" type="string" alwaysNotify="true"/>
+    <field id="result" type="string" alwaysNotify="true"/>
+    <field id="write" type="assocarray"/>
+  </interface>
+
+  <script type="text/brightscript" uri="pkg:/components/tasks/Task.brs"/>
+</component>

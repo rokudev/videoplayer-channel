@@ -152,7 +152,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
       end if
     else if key = "left"
       if m.SpringBoard.visible
-        m.Array[1]--
+        m.Array[1] = m.Array[1] + 1
         count = m.CRow.content.getchild(m.array[0]).getChildCount()
         if m.Array[1] < 0 then m.Array[1] = count - 1
         m.node = m.CRow.content.getchild(m.array[0]).getchild(m.array[1])
@@ -161,7 +161,7 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
       end if
     else if key = "right"
       if m.SpringBoard.visible
-        m.Array[1]++
+        m.Array[1] = m.Array[1] + 1
         count = m.CRow.content.getchild(m.array[0]).getChildCount()
         if m.Array[1] = count then m.Array[1] = 0
         m.node = m.CRow.content.getchild(m.array[0]).getchild(m.array[1])
