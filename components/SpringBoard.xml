@@ -26,6 +26,8 @@
 
       <Poster
         id="Image"
+        width="386"
+        height="286"
         translation="[300,250]"/>
 
       <Label
