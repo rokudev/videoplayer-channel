@@ -197,6 +197,8 @@ sub parseLeaf(job as object)
               contentnode.episodeNumber = child.gettext()
             else if child.getname() = "genres"
               contentnode.categories = child.getText()
+            else if child.getname() = "streamFormat"
+              contentnode.streamFormat = child.gettext()
             'else if child.getname() = "contentQuality"
             ''  contentnode.contentQuality = child.gettext()
             else if child.getname() = "media"
@@ -207,8 +209,6 @@ sub parseLeaf(job as object)
                   contentNode.maxBandWidth = item.gettext().toint()
                 else if item.getname() = "streamUrl"
                   contentNode.url = item.gettext()
-                else if item.getname() = "streamFormat"
-                  contentnode.streamFormat = item.gettext()
                 else
                   print "WHY AM I HERE: " ; item.getName() ; item.getText()
                 end if
