@@ -11,12 +11,26 @@ sub init()
   m.LabelList     = m.top.findNode("LabelList")
   m.CategoryLabel = m.top.findNode("CategoryLabel")
   m.RuntimeLabel  = m.top.findNode("RuntimeLabel")
+  m.Video.ObserveField("state","OnVideoPlayerStateChange")
   m.Title.font.size = 40
   m.CategoryLabel.color = "#333333"
   m.Title.color = "#333333"
   m.Details.color = "#444444"
   m.RuntimeLabel.color = "#333333"
 end sub
+
+Sub OnVideoPlayerStateChange()
+  print "SpringBoard.brs - [OnVideoPlayerStateChange]"
+  if m.Video.state = "error"
+    ' error handling
+    m.Video.visible = false
+  else if m.Video.state = "playing"
+    ' playback handling
+  else if m.Video.state = "finished"
+    m.video.visible = false
+    m.SpringDetails.Visible=true
+  end if
+End Sub
 
 sub onContentChange(event as object)
   print "onContentChange"
@@ -34,7 +48,7 @@ sub onContentChange(event as object)
   translation = [m.RuntimeLabel.translation[0], m.Details.translation[1] + x.height + 30]
   m.RuntimeLabel.translation = translation
   m.CategoryLabel.text = content.categories
-
+    
   ContentNode = CreateObject("roSGNode", "ContentNode")
   ContentNode.streamFormat = content.streamformat
   ContentNode.url = content.url
@@ -48,6 +62,8 @@ sub onContentChange(event as object)
   m.Video.content = ContentNode
 end sub
 
+
+
 sub onItemSelected(event as object)
   print "onItemSelected"
   m.Video.control = "play"
@@ -55,6 +71,8 @@ sub onItemSelected(event as object)
   m.SpringDetails.visible = false
   m.Video.visible = true
   m.Video.setFocus(true)
+  
+  
 end sub
 
 ' Called when a key on the remote is pressed
