@@ -18,6 +18,4 @@
   <interface>
     <field id="RowItemSelected" type="intarray" alias="HomeRow.rowItemSelected"/>
   </interface>
-
-  <script type="text/brightscript" uri="pkg:/components/HomeScreen.brs"/>
 </component>
