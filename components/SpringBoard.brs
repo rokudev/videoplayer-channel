@@ -29,6 +29,7 @@ Sub OnVideoPlayerStateChange()
   else if m.Video.state = "finished"
     m.video.visible = false
     m.SpringDetails.Visible=true
+    m.LabelList.setFocus(true)
   end if
 End Sub
 
@@ -48,7 +49,7 @@ sub onContentChange(event as object)
   translation = [m.RuntimeLabel.translation[0], m.Details.translation[1] + x.height + 30]
   m.RuntimeLabel.translation = translation
   m.CategoryLabel.text = content.categories
-    
+
   ContentNode = CreateObject("roSGNode", "ContentNode")
   ContentNode.streamFormat = content.streamformat
   ContentNode.url = content.url
@@ -71,8 +72,6 @@ sub onItemSelected(event as object)
   m.SpringDetails.visible = false
   m.Video.visible = true
   m.Video.setFocus(true)
-  
-  
 end sub
 
 ' Called when a key on the remote is pressed
