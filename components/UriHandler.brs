@@ -300,9 +300,11 @@ sub updateContent()
   if m.top.contentSet return
   if m.top.numRows - 1 = m.top.numRowsReceived
     parent = createObject("roSGNode", "ContentNode")
+    array = []
     for i = (m.top.numRows - m.top.numCurrentRows) to m.top.numRowsReceived
-      parent.appendchild(m.top.contentCache.getField(i.toStr()))
+      array.push(m.top.contentCache.getField(i.toStr()))
     end for
+    parent.appendChildren(getSortedNodes("title", array))
     print "All content has finished loading"
     m.top.contentSet = true
     m.top.categorycontent = parent
@@ -313,3 +315,20 @@ sub updateContent()
     print "Not all content has finished loading yet"
   end if
 end sub
+
+' Returns an array of contentNodes sorted by the given field
+function getSortedNodes(field as String, nodes)
+  toSort = []
+  for each node in nodes
+    map = {}
+    map[field] = node.getField(field)
+    map["actual_node"] = node
+    toSort.push(map)
+  end for
+  toSort.sortBy(field)
+  res = []
+  for each aa in toSort
+    res.push(aa["actual_node"])
+  end for
+  return res
+end function
